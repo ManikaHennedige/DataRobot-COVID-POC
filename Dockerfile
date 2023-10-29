@@ -10,6 +10,7 @@ WORKDIR /app
 
 # Copy the current directory (i.e., your Flask app) into the container at /app
 COPY . /app/
+COPY start_server.sh /opt/code/
 
 RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6 -y
@@ -18,8 +19,8 @@ RUN apt-get install ffmpeg libsm6 libxext6 -y
 RUN pip install --upgrade pip \
     && pip install -r requirements-docker.txt
 
-# Expose port 5000 for the app to listen on
-EXPOSE 5000
+# Expose port for the app to listen on
+EXPOSE 8080
 
 # Run your Flask application
-CMD gunicorn --bind 0.0.0.0:5000 app:app
+ENTRYPOINT ["./start_server.sh"]

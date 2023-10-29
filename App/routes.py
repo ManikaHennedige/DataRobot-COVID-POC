@@ -8,7 +8,7 @@ from flask import jsonify, request
     Documentation reference: https://docs.datarobot.com/en/docs/mlops/deployment/custom-models/custom-model-environments/custom-environments.html
 """
 
-@app.route('/', methods=['GET'])
+@app.route('/URL_PREFIX/', methods=['GET'])
 def home():
     """
         Mandatory DataRobot endpoint to check if the environment is running
@@ -17,13 +17,13 @@ def home():
     return jsonify(response, 200)
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/URL_PREFIX/upload/', methods=['POST'])
 def upload():
     # request.form[]
     # at the end of this function, the uploaded image and text label file (renamed to test.txt) should be uploaded into received/images and received/labels/test.txt respectively
     pass
 
-@app.route('/predict', methods=['GET'])
+@app.route('/URL_PREFIX/predict/', methods=['GET', 'POST'])
 def predict():
     """
         Mandatory DataRobot endpoint for making predictions
